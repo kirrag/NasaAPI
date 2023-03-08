@@ -19,6 +19,11 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.awt.Dimension;
+import java.awt.image.*;
+import java.awt.event.*;
+import javax.imageio.*;
+import java.io.*;
 
 public class Main {
 
@@ -31,6 +36,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
+
+		ImageLoad appwin = new ImageLoad();
+
 		CloseableHttpClient httpClient = HttpClientBuilder.create()
 				.setUserAgent("My Test Service")
 				.setDefaultRequestConfig(RequestConfig.custom()
@@ -52,11 +60,19 @@ public class Main {
 		NasaMediaResource nasaMediaResource = mapper.readValue(body, NasaMediaResource.class);
 
 		String url = nasaMediaResource.getUrl();
+
 		URL url2 = new URL(url);
+
+		//java.net.Url urlObj = new java.net.Url(url2);
+		String urlPath = url2.getPath();
+		String fileName = urlPath.substring(urlPath.lastIndexOf('/') + 1);
+		System.out.println(fileName);
 
 		downloadFile(url2, "fileName.jpg");
 
-
+		appwin.setSize(new Dimension(400, 365));
+		appwin.setTitle("LoadImageLoad");
+		appwin.setVisible(true);
 		// System.out.println(url);
 
 		// System.out.println();
