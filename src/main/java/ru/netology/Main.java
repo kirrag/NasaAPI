@@ -1,7 +1,6 @@
 package ru.netology;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.nio.charset.StandardCharsets;
 import java.io.File;
 import java.net.URL;
